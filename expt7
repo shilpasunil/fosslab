@@ -1,0 +1,27 @@
+#!/bin/bash
+
+file=$1
+username=$2
+
+if [ $# -ne 2 ]
+then 
+	echo "Incorrect number of arguments"
+	exit 1
+fi
+
+if [ -f "$file" ]
+then
+	echo "File found"
+else 
+	echo "file not found"
+	exit 1
+fi
+
+if grep -i -w "$username" $file
+then
+	echo "Username already exist"
+else
+	echo "username not found"
+	echo "$username" >>$file
+	echo "New user added"
+fi
